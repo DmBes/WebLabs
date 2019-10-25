@@ -16,6 +16,7 @@ namespace ASP.Components
                 new MenuItem { IsPage = true, Area = "Admin", Page = "/Index", Text = "Administrator" } };
 
 
+
         public IViewComponentResult Invoke()
         { //Получение значений сегментов маршрута
           var controller = ViewContext.RouteData.Values["controller"];
