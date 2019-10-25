@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ASP.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.UI;
+using ASP.DAL.Data;
+using ASP.DAL.Entities;
+using ASP.Services;
 
 namespace ASP
 {
@@ -36,19 +38,39 @@ namespace ASP
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            services.AddIdentity<ApplicationUser, IdentityRole>
+                (opt => 
+                { opt.Password.RequireLowercase = false;
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.Password.RequireUppercase = false;
+                    opt.Password.RequireDigit = false; }
+                ).AddDefaultUI(UIFramework.Bootstrap4).
+                AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            //TODO изменил IdentityUser на ApplicationUser
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
+            DbInitializer.Seed(context, userManager, roleManager).GetAwaiter().GetResult();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
