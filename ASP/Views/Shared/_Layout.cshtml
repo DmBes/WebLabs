@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASP</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" /> 
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!--Панель навигации-->
+
+            <span class="nav-color">
+                Test
+            </span><br />
+
+           @*
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+                <a class="navbar-brand" href="#"> Weblabs</a>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#"> WeblabsV05</a>
+
+                    <a class="nav-item nav-link active" asp-controller="Home" aspaction="Index">Lab 2</a>
+                    <a class="nav-item nav-link" asp-controller="Product" aspaction="Index">Catalog</a>
+                    <a class="nav-item nav-link" asp-area="Admin" asppage="/Index">Administrator</a> 
+                </div>
+             *@   
+                
+            
+            
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <!-- меню сайта -->
+            <a class="navbar-brand" href="#">WebLabsV05</a>
+            @await Component.InvokeAsync("Menu")
+            <!-- меню сайта - конец -->
+            @*user information*@
+
+            @*<a asp-controller="Cart" asp-action="Index" class="navbar-text mlauto">
+                0,00 $(0)
+                <i class="fa fa-shopping-cart nav-color"></i>
+            </a>*@
+
+
+            @*<div class="dropdown ml-4 nav-color">
+            <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                <img src="images/avatar.jpg" width="30" alt="User" class="rounded" />
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-item-text">
+                    <img src="images/avatar.jpg" width="50" alt="User" class="rounded" />
+                    user@tut.by
+                </div>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" asp-controller="Product" aspaction="UserProducts">My product</a>
+                <a class="dropdown-item" href="#">Log off</a>
+
+            </div>
+
+
+        </div>*@
+            
+
+            <!-- Информация пользователя --> 
+            <partial name="_UserPartial" />
+            <!-- Информация пользователя - конец -->
+
+
+
+
+        </nav>
+
+        </div>
+
+
+
+
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+
+        <div class="container fixed-bottom">
+            <div class="navbar navbar-dark navbar-expand-md bg-dark">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="http://www.facebook.com">
+                        <i class="fa fa-facebook fa-2x">
+
+                        </i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.vk.com">
+                        <i class="fa fa-vk fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="http://www.twitter.com">
+                        <i class="fa fa-twitter fa-2x">
+
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
