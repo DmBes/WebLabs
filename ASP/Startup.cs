@@ -12,7 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+#pragma warning disable CS0105 // Директива using для "Microsoft.AspNetCore.Identity.UI" ранее встречалась в этом пространстве имен
 using Microsoft.AspNetCore.Identity.UI;
+#pragma warning restore CS0105 // Директива using для "Microsoft.AspNetCore.Identity.UI" ранее встречалась в этом пространстве имен
 using ASP.DAL.Data;
 using ASP.DAL.Entities;
 using ASP.Services;

@@ -5,6 +5,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using ASP.DAL.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,10 @@ namespace ASP.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+    
+
+
+
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -55,6 +60,7 @@ namespace ASP.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            public IFormFile Avatar { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -68,12 +74,22 @@ namespace ASP.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+
+                if (Input.Avatar != null)
+                { user.AvatarImage = new byte[(int)Input.Avatar.Length]; 
+                    await Input.Avatar
+                        .OpenReadStream()
+                        .ReadAsync(user.AvatarImage, 0, (int)Input.Avatar.Length);
+                    user.ImageMimeType = Input.Avatar.ContentType; }
+
+
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-               
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
@@ -83,6 +99,7 @@ namespace ASP.Areas.Identity.Pages.Account
                 }
             }
 
+            
             // If we got this far, something failed, redisplay form
             return Page();
         }

@@ -8,5 +8,7 @@ namespace ASP.DAL.Entities
 {
     public class ApplicationUser : IdentityUser
     {
+         public byte[] AvatarImage { get; set; } 
+         public string ImageMimeType { get; set; } 
     }
 }
