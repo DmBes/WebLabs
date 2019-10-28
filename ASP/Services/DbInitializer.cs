@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ASP.Services
 {
-    public class DbInitializer
+    static class DbInitializer
     {
         public static async Task Seed(ApplicationDbContext context,
                 UserManager<ApplicationUser> userManager,

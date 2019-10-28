@@ -17,6 +17,7 @@ using ASP.DAL.Data;
 using ASP.DAL.Entities;
 using ASP.Services;
 
+
 namespace ASP
 {
     public class Startup
@@ -54,9 +55,9 @@ namespace ASP
                     Configuration.GetConnectionString("DefaultConnection")));
 
             //TODO изменил IdentityUser на ApplicationUser
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<ApplicationUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
 
