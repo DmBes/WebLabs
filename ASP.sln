@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP", "ASP\ASP.csproj", "{57CC784A-8887-40CF-87C0-E8C236AAC453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.DAL", "ASP.DAL\ASP.DAL.csproj", "{722EBB96-B9D9-45FA-BD02-DDF2C6FE00C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.DAL", "ASP.DAL\ASP.DAL.csproj", "{722EBB96-B9D9-45FA-BD02-DDF2C6FE00C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.TESTS", "ASP.TESTS\ASP.TESTS.csproj", "{F263AB75-0569-4BFD-9251-987EFE9CA812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{722EBB96-B9D9-45FA-BD02-DDF2C6FE00C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{722EBB96-B9D9-45FA-BD02-DDF2C6FE00C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{722EBB96-B9D9-45FA-BD02-DDF2C6FE00C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F263AB75-0569-4BFD-9251-987EFE9CA812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F263AB75-0569-4BFD-9251-987EFE9CA812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F263AB75-0569-4BFD-9251-987EFE9CA812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F263AB75-0569-4BFD-9251-987EFE9CA812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

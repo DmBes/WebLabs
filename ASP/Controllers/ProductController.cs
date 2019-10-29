@@ -9,19 +9,23 @@ namespace ASP.Controllers
 {
     public class ProductController : Controller
     {
-        private List<Boots> _boots;
+        public List<Boots> _boots;
         private List<BootsGroup> _bootsGroups;
+        int _pageSize;
+
 
         public ProductController()
         {
+            _pageSize = 3;
             SetupData();
         }
 
 
 
-        public IActionResult Index()
+        public IActionResult Index(int pageNo = 1)
         {
-            return View(_boots);
+            var items = _boots.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
+            return View(items);
         }
 
 
