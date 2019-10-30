@@ -5,6 +5,7 @@ using Xunit;
 using ASP.Controllers;
 using ASP.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using ASP.Models;
 
 namespace ASP.TESTS
 {
@@ -35,6 +36,67 @@ namespace ASP.TESTS
             Assert.NotNull(model);
             Assert.Equal(qty, model.Count);
             Assert.Equal(id, model[0].BootsId);
+        }
+
+
+
+
+        /// <summary>
+        /// Исходные данные для теста
+        /// номер страницы, кол.объектов на выбранной странице и
+        /// id первого объекта на странице
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<object[]> Data()
+        {
+            yield return new object[] { 1, 3, 1 };
+            yield return new object[] { 2,2,4 };
+        } 
+
+        /// <summary>
+        /// Получение тестового списка объектов
+        /// </summary>
+        /// <returns></returns>
+        private List<Boots> GetBootsList()
+        {             return new List<Boots>
+        {
+            new Boots{ BootsId= 1},
+            new Boots{ BootsId=2},
+            new Boots{ BootsId=3}, 
+            new Boots{ BootsId=4}, 
+            new Boots{ BootsId=5}
+
+        };
+        } 
+
+        
+
+
+
+        [Theory]
+        [MemberData(memberName: nameof(Data))]
+        public void ListViewModelCountsPages(int page, int qty, int id)
+        { // Act
+          var model = ListViewModel<Boots>.GetModel(GetBootsList(), page, 3); 
+            // Assert
+            Assert.Equal(2, model.TotalPages);             
+        }
+
+        [Theory]
+        [MemberData(memberName: nameof(Data))]
+        public void ListViewModelSelectsCorrectQty(int page, int qty, int id)
+        { // Act
+          var model = ListViewModel<Boots>.GetModel(GetBootsList(), page, 3); 
+            // Assert
+            Assert.Equal(qty, model.Count); 
+        }
+        [Theory]
+        [MemberData(memberName: nameof(Data))]
+        public void ListViewModelHasCorrectData(int page, int qty, int id)
+        { // Act
+          var model = ListViewModel<Boots>.GetModel(GetBootsList(), page, 3); 
+            // Assert
+            Assert.Equal(id, model[0].BootsId); 
         }
     }
 }

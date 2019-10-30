@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.DAL.Entities;
+using ASP.Models;
 
 namespace ASP.Controllers
 {
@@ -25,7 +26,7 @@ namespace ASP.Controllers
         public IActionResult Index(int pageNo = 1)
         {
             var items = _boots.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
-            return View(items);
+            return View(ListViewModel<Boots>.GetModel(_boots,pageNo, _pageSize));
         }
 
 
