@@ -30,10 +30,17 @@
 <div class="col-10">
 
 
-<div class="row">
-    @foreach (var item in Model)
-    {<div class='col-md-4'> <partial name="_ListItemPartial" model="@item" /></div>}
-</div>
+    <div class="row">
+        @foreach (var item in Model)
+        {<div class='col-md-4'> <partial name="_ListItemPartial" model="@item" /></div>}
+    </div>
+    <pager page-current="@Model.CurrentPage"
+           page-total="@Model.TotalPages"
+           action="Index"
+           controller="Product"
+           group-id="currentGroup">
+
+    </pager> 
 </div> 
     </div> 
 

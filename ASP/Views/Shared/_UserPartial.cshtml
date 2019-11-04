@@ -9,11 +9,16 @@
     <div class="dropdown ml-4 nav-color">
         <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
-            <img src="@Url.Action("GetAvatar","Image")" width="30" alt="User" class="rounded" />
+            <img img-action="GetAvatar" img-controller="Image" width="30" alt="User" 
+                 class="rounded bg-light"/>
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-item-text">
-                < <img src="@Url.Action("GetAvatar","Image")" width="50" alt="User" class="rounded" />
+                <img img-action="GetAvatar" 
+                       img-controller="Image" 
+                width="30" alt="User"
+                class="rounded bg-light"  />
+
                 @User.Identity.Name
             </div>
 
@@ -24,7 +29,7 @@
                   asp-route-returnurl="@ViewContext.HttpContext.Request.Path">
                 <input type="submit" value="Log off" class="dropdown-item" />
             </form>
-            @*<a class="dropdown-item" href="#">Log off</a>*@
+
 
         </div>
 
