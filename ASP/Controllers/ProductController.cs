@@ -23,11 +23,35 @@ namespace ASP.Controllers
 
 
 
-        public IActionResult Index(int pageNo = 1)
+        public IActionResult Index(int? group, int pageNo = 1)
         {
             var items = _boots.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
-            return View(ListViewModel<Boots>.GetModel(_boots,pageNo, _pageSize));
+            var bootsFiltered = _boots.Where(d => !group.HasValue
+                                                   || d.BootsId == group.Value).ToList();
+
+            // Поместить список групп во ViewData 
+            ViewData["Groups"] = _bootsGroups; 
+
+            // Получить id текущей группы и поместить в TempData
+            var currentGroup = 0;
+            try
+            {
+                int.TryParse(HttpContext.Request.Query["group"], out currentGroup);
+                TempData["CurrentGroup"] = currentGroup;
+            }
+            catch (NullReferenceException e)
+            {
+
+                currentGroup = 0;
+            }
+
+
+
+            return View(ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
         }
+
+
+
 
 
 

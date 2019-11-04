@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - ASP</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" /> 
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -29,64 +29,64 @@
                 Test
             </span><br />
 
-           @*
+            @*
+                <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+                    <a class="navbar-brand" href="#"> Weblabs</a>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#"> WeblabsV05</a>
+
+                        <a class="nav-item nav-link active" asp-controller="Home" aspaction="Index">Lab 2</a>
+                        <a class="nav-item nav-link" asp-controller="Product" aspaction="Index">Catalog</a>
+                        <a class="nav-item nav-link" asp-area="Admin" asppage="/Index">Administrator</a>
+                    </div>
+            *@
+
+
+
+
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <!-- меню сайта -->
+                <a class="navbar-brand" href="#">WebLabsV05</a>
+                @await Component.InvokeAsync("Menu")
+                <!-- меню сайта - конец -->
+                @*user information*@
 
-                <a class="navbar-brand" href="#"> Weblabs</a>
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#"> WeblabsV05</a>
-
-                    <a class="nav-item nav-link active" asp-controller="Home" aspaction="Index">Lab 2</a>
-                    <a class="nav-item nav-link" asp-controller="Product" aspaction="Index">Catalog</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asppage="/Index">Administrator</a> 
-                </div>
-             *@   
-                
-            
-            
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <!-- меню сайта -->
-            <a class="navbar-brand" href="#">WebLabsV05</a>
-            @await Component.InvokeAsync("Menu")
-            <!-- меню сайта - конец -->
-            @*user information*@
-
-            @*<a asp-controller="Cart" asp-action="Index" class="navbar-text mlauto">
-                0,00 $(0)
-                <i class="fa fa-shopping-cart nav-color"></i>
-            </a>*@
+                @*<a asp-controller="Cart" asp-action="Index" class="navbar-text mlauto">
+                        0,00 $(0)
+                        <i class="fa fa-shopping-cart nav-color"></i>
+                    </a>*@
 
 
-            @*<div class="dropdown ml-4 nav-color">
-            <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false">
-                <img src="images/avatar.jpg" width="30" alt="User" class="rounded" />
-            </div>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="dropdown-item-text">
-                    <img src="images/avatar.jpg" width="50" alt="User" class="rounded" />
-                    user@tut.by
-                </div>
+                @*<div class="dropdown ml-4 nav-color">
+                        <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                             aria-haspopup="true" aria-expanded="false">
+                            <img src="images/avatar.jpg" width="30" alt="User" class="rounded" />
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-item-text">
+                                <img src="images/avatar.jpg" width="50" alt="User" class="rounded" />
+                                user@tut.by
+                            </div>
 
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" asp-controller="Product" aspaction="UserProducts">My product</a>
-                <a class="dropdown-item" href="#">Log off</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-controller="Product" aspaction="UserProducts">My product</a>
+                            <a class="dropdown-item" href="#">Log off</a>
 
-            </div>
+                        </div>
 
 
-        </div>*@
-            
+                    </div>*@
 
-            <!-- Информация пользователя --> 
-            <partial name="_UserPartial" />
-            <!-- Информация пользователя - конец -->
+
+                <!-- Информация пользователя -->
+                <partial name="_UserPartial" />
+                <!-- Информация пользователя - конец -->
 
 
 
 
-        </nav>
+            </nav>
 
         </div>
 
@@ -95,7 +95,7 @@
 
     </header>
 
-<main class="container">
+    <main class="container">
         @RenderBody()
     </main>
 
@@ -124,10 +124,8 @@
     </footer>
 
 
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-
-
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
 

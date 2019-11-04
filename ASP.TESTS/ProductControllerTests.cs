@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -21,14 +22,18 @@ namespace ASP.TESTS
 
             controller._boots = new List<Boots>
             {
-                new Boots {BootsId = 1},
-                new Boots {BootsId = 2},
-                new Boots {BootsId = 3},
-                new Boots {BootsId = 4},
-                new Boots {BootsId = 5}
+                new Boots {BootsId = 1,BootsGroupId= 1},
+                new Boots {BootsId = 2,BootsGroupId= 1},
+                new Boots {BootsId = 3,BootsGroupId= 2},
+                new Boots {BootsId = 4, BootsGroupId= 3 },
+                new Boots {BootsId = 5, BootsGroupId= 4},
+                new Boots {BootsId = 4, BootsGroupId= 3 },
+                new Boots {BootsId = 5, BootsGroupId= 4},
+                new Boots {BootsId = 4, BootsGroupId= 3 },
+                new Boots {BootsId = 5, BootsGroupId= 4}
             };
             // Act 
-            var result = controller.Index(page) as ViewResult;
+            var result = controller.Index(pageNo: page, group: null) as ViewResult ;
             var model = result?.Model as List<Boots>;
 
 
@@ -98,5 +103,20 @@ namespace ASP.TESTS
             // Assert
             Assert.Equal(id, model[0].BootsId); 
         }
-    }
+
+        [Fact]
+        public void ControllerSelectsGroup()
+        { // arrange
+          var controller = new ProductController(); 
+          controller._boots = GetBootsList();
+          // act
+          var result = controller.Index(4) as ViewResult;
+            var model = result.Model as List<Boots>;
+            
+            // assert
+
+            Assert.Equal(1, model.Count);
+            Assert.Equal(GetBootsList()[3],  model[0],  Comparer<Boots>.GetComparer((d1,d2)=>
+                { return d1.BootsId == d2.BootsId; })); }
+        }
 }
