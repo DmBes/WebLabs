@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.DAL.Entities;
+using ASP.Extensions;
 using ASP.Models;
 
 namespace ASP.Controllers
@@ -22,7 +23,8 @@ namespace ASP.Controllers
         }
 
 
-
+        [Route("Catalog")]
+        [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
             var items = _boots.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
@@ -45,9 +47,15 @@ namespace ASP.Controllers
                 currentGroup = 0;
             }
 
-
-
+            if (Request.IsAjaxRequest()) 
+                return PartialView("_ListPartial", ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
             return View(ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
+
+            //if (Request.Headers["x-requested-with"] == "XMLHttpRequest")
+            //    return PartialView("_ListPartial", ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
+            //return View(ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
+
+            // return View(ListViewModel<Boots>.GetModel(bootsFiltered, pageNo, _pageSize));
         }
 
 
