@@ -4,14 +4,16 @@ using ASP.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191106175819_Entities")]
+    partial class Entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,7 +225,7 @@ namespace ASP.DAL.Migrations
             modelBuilder.Entity("ASP.DAL.Entities.Boots", b =>
                 {
                     b.HasOne("BootsGroup", "Group")
-                        .WithMany("Bootses")
+                        .WithMany("Dishes")
                         .HasForeignKey("BootsGroupId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

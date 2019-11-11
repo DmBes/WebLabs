@@ -28,14 +28,9 @@ public class BootsGroup
     /// <summary>
     /// Навигационное свойство 1-ко-многим
     /// </summary>
-    public List<Boots> Dishes { get; set; }
+    public List<Boots> Bootses{ get; set; }
 
-    public BootsGroup()
-    {
-        var i = GetResult();
-    }
-    public int GetResult() => 1;
-
+    
 
 
 }

@@ -4,14 +4,16 @@ using ASP.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191106171406_EntitiesAdded")]
+    partial class EntitiesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,42 +74,6 @@ namespace ASP.DAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("ASP.DAL.Entities.Boots", b =>
-                {
-                    b.Property<int>("BootsId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BootsGroupId");
-
-                    b.Property<string>("BootsName");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Image");
-
-                    b.Property<int>("Size");
-
-                    b.HasKey("BootsId");
-
-                    b.HasIndex("BootsGroupId");
-
-                    b.ToTable("Bootses");
-                });
-
-            modelBuilder.Entity("BootsGroup", b =>
-                {
-                    b.Property<int>("BootsGroupId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("GroupName");
-
-                    b.HasKey("BootsGroupId");
-
-                    b.ToTable("BootsGroups");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -218,14 +184,6 @@ namespace ASP.DAL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("ASP.DAL.Entities.Boots", b =>
-                {
-                    b.HasOne("BootsGroup", "Group")
-                        .WithMany("Bootses")
-                        .HasForeignKey("BootsGroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

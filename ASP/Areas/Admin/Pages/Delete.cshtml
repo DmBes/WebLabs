@@ -1,0 +1,52 @@
+﻿@page "{id:int}"
+@model ASP.Areas.Admin.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Boots</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boots.BootsName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boots.BootsName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boots.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boots.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boots.Size)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boots.Size)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boots.Image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boots.Image)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boots.Group)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boots.Group.BootsGroupId)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Boots.BootsId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

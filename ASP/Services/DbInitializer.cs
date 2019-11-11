@@ -36,7 +36,62 @@ namespace ASP.Services
                 // назначить роль admin
                 admin = await userManager.FindByEmailAsync("admin@mail.ru");
                 await userManager.AddToRoleAsync(admin, "admin");
+
             }
-        }
+            if (!context.BootsGroups.Any())
+            {
+                context.BootsGroups.AddRange
+                (new List<BootsGroup>
+                    {
+                    new BootsGroup { GroupName="LeatherBoots"},
+                    new BootsGroup {GroupName="Ugg"},
+                    new BootsGroup { GroupName="Sneakers"},
+                    new BootsGroup {GroupName="Slippers"},
+                    new BootsGroup {GroupName="Galoshes"},
+                    new BootsGroup {GroupName="Macasiness"}
+                    }
+                );
+                await context.SaveChangesAsync();
+            }
+            // проверка наличия объектов
+            if (!context.Bootses.Any())
+            {
+                context.Bootses.AddRange
+                (new List<Boots>
+                    {
+                        new Boots
+                        {
+                            BootsName = "Estella", Description = "for woman ",
+                            Size = 280, BootsGroupId = 1, Image = "9816213-1.jpg"
+                        },
+                        new Boots
+                        {
+                            BootsName = "Adidas", Description = "sport",
+                            Size = 315, BootsGroupId = 3, Image = "snikkers.jpg"
+                        },
+                        new Boots
+                        {
+                            BootsName = "DED", Description = "My predok",
+                            Size = 340, BootsGroupId = 5, Image = "galosesh.jpg"
+                        },
+                        new Boots
+                        { 
+                            BootsName = "House", Description = "comfortable slippers",
+                            Size = 275, BootsGroupId = 4, Image = "slippers.jpg"
+                        },
+                        new Boots
+                        {
+                             BootsName = "CARLABEI", Description = "africa style",
+                            Size = 285, BootsGroupId = 6, Image = "macasins.jpg"
+                        }
+                    }
+                );
+                await context.SaveChangesAsync();
+            }
+
+        } 
+    
     }
+    
 }
+
