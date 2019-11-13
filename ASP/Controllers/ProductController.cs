@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using ASP.DAL.Entities;
 using ASP.Extensions;
 using ASP.Models;
+using Microsoft.Extensions.Logging;
 
 namespace ASP.Controllers
 {
     public class ProductController : Controller
     {
-
+        private ILogger _logger;
         ApplicationDbContext _context;
 
 

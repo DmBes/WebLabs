@@ -1,4 +1,6 @@
-﻿<a asp-controller="Cart" asp-action="Index" class="navbar-text ml-auto">
-    0,00 $(0)
+﻿@model ASP.Models.Cart
+
+<a asp-controller="Cart" asp-action="Index" class="navbar-text ml-auto">
+   @Model.Calories Size(@Model.Count)
     <i class="fa fa-shopping-cart nav-color"></i>
 </a>

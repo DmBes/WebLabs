@@ -39,10 +39,9 @@
                 else { 
                     <h4>Файл изображения не задан</h4> 
                 }
-                <div class="custom-file mt-3">
-                    <input type="file" class="custom-file-input" name="image" id="customFile">
-                    <label class="custom-file-label" for="customFile"> Choose File Image</label>
-                </div>
+                
+                    <input type="file" class="form-control-file" name="image" id="customFile">
+                
                 
 
                 @*<label asp-for="Boots.Image" class="control-label"></label>
@@ -64,4 +63,6 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+@section Scripts{ 
 
+}

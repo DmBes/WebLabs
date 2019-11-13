@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-#pragma warning disable CS0105 // Директива using для "Microsoft.AspNetCore.Identity.UI" ранее встречалась в этом пространстве имен
-using Microsoft.AspNetCore.Identity.UI;
-#pragma warning restore CS0105 // Директива using для "Microsoft.AspNetCore.Identity.UI" ранее встречалась в этом пространстве имен
+#pragma warning disable CS0105 // Директива using для "Microsoft.AspNetCore.Identity.UI" 
+    // ранее встречалась в этом пространстве имен
+#pragma warning restore CS0105 // Директива using для 
+    //"Microsoft.AspNetCore.Identity.UI" ранее встречалась в этом пространстве имен
 using ASP.DAL.Data;
 using ASP.DAL.Entities;
+using ASP.Models;
 using ASP.Services;
 
 
@@ -62,7 +59,13 @@ namespace ASP
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt => {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<Cart> (sp => CartService.GetCart(sp));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -91,7 +94,7 @@ namespace ASP
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

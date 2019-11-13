@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ASP.Models.CartItem>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Ваша корзина</h1>
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th>
+
+        </th> 
+        <th> @Html.DisplayNameFor(model => model.Quantity) </th>
+        <th>
+
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {<tr>
+         <td>
+              <label>@item.Boots.BootsName</label>
+         </td> 
+         <td> @Html.DisplayFor(modelItem => item.Quantity) </td>
+         <td>
+             <a class="btn btn-outline-danger" asp-action="delete" asp-controller="Cart" asp-route-id="@item.Boots.BootsId">
+                 <i class="fa fa-close">
+
+                 </i>
+             </a>
+         </td>
+     </tr>}
+    </tbody>
+</table>
