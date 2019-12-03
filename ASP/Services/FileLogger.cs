@@ -39,10 +39,12 @@ namespace ASP.Services
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId,
-            TState state, Exception exception, Func<TState, Exception,
-                string> formatter)
+
+            TState state, 
+            Exception exception, 
+            Func<TState, Exception, string> formatter)
         {
-            if (formatter != null)
+              if (formatter != null)
             {
                 lock (_lock)
                 {

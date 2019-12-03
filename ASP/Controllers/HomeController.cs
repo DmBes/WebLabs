@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace ASP.Controllers
 
         public IActionResult Index()
         {
+
             ViewData["Text"] = "Лабораторная работа 2";
             ViewData["Lst"] = new SelectList(_listDemo, "ListItemValue", "ListItemText");
             return View();

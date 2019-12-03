@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace ASP.Components
@@ -13,7 +14,9 @@ namespace ASP.Components
         private List<MenuItem> _menuItems = new List<MenuItem> 
             { new MenuItem { Controller = "Home", Action = "Index", Text = "Lab3" },
                 new MenuItem { Controller = "Product", Action = "Index", Text = "Catalog" },
-                new MenuItem { IsPage = true, Area = "Admin", Page = "/Index", Text = "Administrator" } };
+                new MenuItem { IsPage = true, Area = "Admin", Page = "/Index", Text = "Administrator" },
+                new MenuItem{ IsPage=true, Area="ApiDemo", Page="/Index", Text="API-demo"}
+            };
 
 
 

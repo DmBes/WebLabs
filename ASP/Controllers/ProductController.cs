@@ -22,10 +22,11 @@ namespace ASP.Controllers
         int _pageSize;
 
 
-        public ProductController(ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context, ILogger<ProductController> logger)
         {
             _pageSize = 3;
             _context = context;
+          //  _logger = logger;
         }
 
 
@@ -33,7 +34,25 @@ namespace ASP.Controllers
         [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
-            var items = _context.Bootses.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
+            //var items = _context.Bootses.Skip((pageNo - 1) * _pageSize).Take(_pageSize).ToList();
+
+            var groupName = group.HasValue ? _context.BootsGroups.Find(group.Value)?.GroupName : "all groups";
+
+          //  var text = $"info: group={groupName},  page={pageNo}";
+          //  _logger.LogInformation(text);
+
+
+
+
+           // var groupMame = group.HasValue ? _context.BootsGroups.Find(group.Value)?.GroupName : "all groups";
+          //  _logger.LogInformation($"info: group={groupMame},  page={pageNo}");
+
+
+
+
+
+
+
             var bootsFiltered = _context.Bootses.Where(d => !group.HasValue
                                                    || d.BootsId == group.Value).ToList();
 

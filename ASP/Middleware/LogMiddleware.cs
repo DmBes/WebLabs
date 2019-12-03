@@ -28,7 +28,7 @@ namespace ASP.Middleware
 
             // получить код состояния ответа
             var statusCode = context.Response.StatusCode;
-            if (statusCode != StatusCodes.Status200OK)
+          if (statusCode != StatusCodes.Status200OK)
             {
                 // получить логер
                 var logger = factory.CreateLogger<FileLogger>();
@@ -36,7 +36,8 @@ namespace ASP.Middleware
                 // записать информацию в лог
                 logger.LogInformation($"{time.ToShortDateString()}" +
                                       $"{time.ToLongTimeString()}: " +
-                                      $"url: {context.Request.Path}{context.Request.QueryString} returns {statusCode}");
+                                      $"url: {context.Request.Path}{context.Request.QueryString} " +
+                                      $"returns {statusCode}");
             }
         }
     }
